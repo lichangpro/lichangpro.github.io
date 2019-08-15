@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.3.0">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《大话数据结构》学习笔记一">
+<meta property="og:url" content="http://chanceli.com/2019/03/05/DataStructurePart1/index.html">
+<meta property="og:site_name" content="Chance">
+<meta property="og:description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-14T15:50:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《大话数据结构》学习笔记一">
+<meta name="twitter:description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
+  <link rel="canonical" href="http://chanceli.com/2019/03/05/DataStructurePart1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>《大话数据结构》学习笔记一 | Chance</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-right">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+      <div class="site-meta-headline">
+        <a>
+          <img class="custom-logo-image" src="https://chanceli.com/images/avatar.jpg#/images/avatar.jpg" alt="Chance">
+        </a>
+      </div>
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chance</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chanceli.com/blog/2019/03/05/DataStructurePart1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chance">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chance">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">《大话数据结构》学习笔记一
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-05 23:41:00" itemprop="dateCreated datePublished" datetime="2019-03-05T23:41:00+08:00">2019-03-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-14 23:50:48" itemprop="dateModified" datetime="2019-08-14T23:50:48+08:00">2019-08-14</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/《大话数据结构》/" itemprop="url" rel="index"><span itemprop="name">《大话数据结构》</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="第1章-数据结构绪论"><a href="#第1章-数据结构绪论" class="headerlink" title="第1章 数据结构绪论"></a>第1章 数据结构绪论</h1><ul>
+<li>数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。</li>
+<li>数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。</li>
+<li>数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。</li>
+<li>数据对象：是性质相同的数据元素的集合，是数据的子集。</li>
+<li>数据结构：是相互之间存在一种或多种特定关系的数据元素的集合。<a id="more"></a>
+<h2 id="逻辑结构与物理结构"><a href="#逻辑结构与物理结构" class="headerlink" title="逻辑结构与物理结构"></a>逻辑结构与物理结构</h2><h4 id="1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："><a href="#1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：" class="headerlink" title="1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："></a>1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：</h4></li>
+<li>集合机构</li>
+<li>线性结构</li>
+<li>树形结构</li>
+<li>图形结构</li>
+</ul>
+<h4 id="2-物理结构：是指数据的逻辑结构在计算机中的存储形式。"><a href="#2-物理结构：是指数据的逻辑结构在计算机中的存储形式。" class="headerlink" title="2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。"></a>2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。</h4><ul>
+<li>顺序存储结构：是把数据元素放在地址连续的存储单元里，其数据间的逻辑关系和物理关系是一致的。</li>
+<li>链式存储结构：是把数据元素存放在任意的存储单元里，这组单元可以是连续的，也可以是不连续的。</li>
+</ul>
+<h2 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h2><p>数据类型：是指一组性质相同的值得集合及定义在此集合上的一些操作的总称。<br>C语言中，按照取值的不同，可以分为两类：</p>
+<ul>
+<li>原子类型：是不可以再分解的基本类型，包括整型、实型、字符型等。</li>
+<li>结构类型：由若干个类型组合而成，是可以再分解的。例如，整型数组是由若干整型数组组成的。</li>
+</ul>
+<p>抽象数据类型（Abstract Data Type, ADT）：是指一个数学模型及定义在该模型上的一组操作。</p>
+<h1 id="第2章-算法"><a href="#第2章-算法" class="headerlink" title="第2章 算法"></a>第2章 算法</h1><p>算法是解决特定问题求解步骤的描述，在计算机中表现为指令的有序序列，并且每条指令表示一个或多个操作。</p>
+<h2 id="算法的特性"><a href="#算法的特性" class="headerlink" title="算法的特性"></a>算法的特性</h2><ol>
+<li>输入输出</li>
+<li>有穷性</li>
+<li>确定性</li>
+<li>可行性</li>
+</ol>
+<h2 id="算法设计的要求"><a href="#算法设计的要求" class="headerlink" title="算法设计的要求"></a>算法设计的要求</h2><ol>
+<li>正确性</li>
+<li>可读性</li>
+<li>健壮性</li>
+<li>时间效率高和存储量低</li>
+</ol>
+<h2 id="算法效率的度量方法"><a href="#算法效率的度量方法" class="headerlink" title="算法效率的度量方法"></a>算法效率的度量方法</h2><ol>
+<li>事后统计方法（不科学、不准确）</li>
+<li>事前分析估算方法</li>
+</ol>
+<h2 id="函数的渐近式增长"><a href="#函数的渐近式增长" class="headerlink" title="函数的渐近式增长"></a>函数的渐近式增长</h2><p>函数的渐近增长：给定两个函数 f(n) 和 g(n), 如果存在一个整数N，使得对于所有的 n &gt; N, f(n) 总是比 g(n) 大，那么，我们说 f(n) 的增长渐近快于 g(n)。</p>
+<h2 id="算法时间复杂度"><a href="#算法时间复杂度" class="headerlink" title="算法时间复杂度"></a>算法时间复杂度</h2><p>在进行算法分析时，语句总的执行次数 T(n) 是关于问题规模 n 的函数，进而分析 T(n) 随 n 的变化情况并确定 T(n) 的数量级。算法的时间复杂度，也就是算法的时间度量，记作：T(n) = O(f(n))。它表示随问题规模 n 的增大，算法执行时间的增长率和 f(n) 的增长率相同，称作算法的渐近时间复杂度，简称为时间复杂度。其中 f(n) 是问题规模 n 的某个函数。</p>
+<h2 id="推导大-O-阶方法"><a href="#推导大-O-阶方法" class="headerlink" title="推导大 O 阶方法"></a>推导大 O 阶方法</h2><ol>
+<li>用常数 1 取代运行时间中的所有加法常数。</li>
+<li>在修改后的运行次数函数中，只保留最高阶项。</li>
+<li>如果最高阶存在且不是 1，则去除与这个项相乘的常数。<br>得到的结果就是大 O 阶。</li>
+</ol>
+<h2 id="常见的时间复杂度"><a href="#常见的时间复杂度" class="headerlink" title="常见的时间复杂度"></a>常见的时间复杂度</h2><p>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n^2) &lt; O(n^3) &lt; O(2^n) &lt; O(n!) &lt; O(n^n)</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/blog/tags/学习笔记/" rel="tag"># 学习笔记</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2019/03/05/CodingGuidelines/" rel="next" title="iOS 代码规范">
+                  <i class="fa fa-chevron-left"></i> iOS 代码规范
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2019/05/29/DataStructurePart2/" rel="prev" title="《大话数据结构》学习笔记二">
+                  《大话数据结构》学习笔记二 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/blog/images/avatar.jpg"
+      alt="Chance">
+  <p class="site-author-name" itemprop="name">Chance</p>
+  <div class="site-description motion-element" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/blog/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/blog/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/lcbest" title="GitHub &rarr; https://github.com/lcbest" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:lc@chanceli.com" title="E-Mail &rarr; mailto:lc@chanceli.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第1章-数据结构绪论"><span class="nav-number">1.</span> <span class="nav-text">第1章 数据结构绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑结构与物理结构"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑结构与物理结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-物理结构：是指数据的逻辑结构在计算机中的存储形式。"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">抽象数据类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第2章-算法"><span class="nav-number">2.</span> <span class="nav-text">第2章 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的特性"><span class="nav-number">2.1.</span> <span class="nav-text">算法的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法设计的要求"><span class="nav-number">2.2.</span> <span class="nav-text">算法设计的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法效率的度量方法"><span class="nav-number">2.3.</span> <span class="nav-text">算法效率的度量方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的渐近式增长"><span class="nav-number">2.4.</span> <span class="nav-text">函数的渐近式增长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法时间复杂度"><span class="nav-number">2.5.</span> <span class="nav-text">算法时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推导大-O-阶方法"><span class="nav-number">2.6.</span> <span class="nav-text">推导大 O 阶方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的时间复杂度"><span class="nav-number">2.7.</span> <span class="nav-text">常见的时间复杂度</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chance</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/blog/js/utils.js?v=7.3.0"></script>
+  <script src="/blog/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/blog/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.3.0"></script>
+<script src="/blog/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>

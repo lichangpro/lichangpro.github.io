@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.3.0">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="编写高质量iOS与OS X代码的52个有效方法第3章 接口与API设计">
+<meta name="keywords" content="Effective Objective-C 2.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Objective-C 2.0（第3章）">
+<meta property="og:url" content="http://chanceli.com/2018/01/03/EffectiveObjectiveCPart3/index.html">
+<meta property="og:site_name" content="Chance">
+<meta property="og:description" content="编写高质量iOS与OS X代码的52个有效方法第3章 接口与API设计">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-06T10:03:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective Objective-C 2.0（第3章）">
+<meta name="twitter:description" content="编写高质量iOS与OS X代码的52个有效方法第3章 接口与API设计">
+  <link rel="canonical" href="http://chanceli.com/2018/01/03/EffectiveObjectiveCPart3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Effective Objective-C 2.0（第3章） | Chance</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-right">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+      <div class="site-meta-headline">
+        <a>
+          <img class="custom-logo-image" src="https://chanceli.com/images/avatar.jpg#/images/avatar.jpg" alt="Chance">
+        </a>
+      </div>
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chance</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chanceli.com/blog/2018/01/03/EffectiveObjectiveCPart3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chance">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chance">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">Effective Objective-C 2.0（第3章）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-03 00:03:00" itemprop="dateCreated datePublished" datetime="2018-01-03T00:03:00+08:00">2018-01-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-12-06 18:03:24" itemprop="dateModified" datetime="2018-12-06T18:03:24+08:00">2018-12-06</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Effective-Objective-C-2-0/" itemprop="url" rel="index"><span itemprop="name">Effective Objective-C 2.0</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="编写高质量iOS与OS-X代码的52个有效方法"><a href="#编写高质量iOS与OS-X代码的52个有效方法" class="headerlink" title="编写高质量iOS与OS X代码的52个有效方法"></a>编写高质量iOS与OS X代码的52个有效方法</h2><h3 id="第3章-接口与API设计"><a href="#第3章-接口与API设计" class="headerlink" title="第3章 接口与API设计"></a>第3章 接口与API设计</h3><a id="more"></a>
+<h4 id="15-用前缀避免命名空间冲突"><a href="#15-用前缀避免命名空间冲突" class="headerlink" title="15.用前缀避免命名空间冲突"></a>15.用前缀避免命名空间冲突</h4><ul>
+<li>选择与你的公司、应用程序或者二者皆有关联之名作为类名的前缀，并在所有代码中均使用这一前缀。</li>
+<li>若自己所开发的程序库中用到了第三方库，则应为其中的名称加上前缀。</li>
+</ul>
+<h4 id="16-提供“全能初始化方法”"><a href="#16-提供“全能初始化方法”" class="headerlink" title="16.提供“全能初始化方法”"></a>16.提供“全能初始化方法”</h4><ul>
+<li>在类中提供一个全能初始化方法，并于文档里指明。其他初始化方法均应调用此方法。</li>
+<li>若全能初始化方法与超类不同，则需覆写超类中的对应方法。</li>
+<li>如果超类的初始化方法不适用于子类，那么应该覆写这个超类方法，并在其中抛出异常。</li>
+</ul>
+<h4 id="17-实现description方法"><a href="#17-实现description方法" class="headerlink" title="17.实现description方法"></a>17.实现description方法</h4><ul>
+<li>实现description方法返回一个有意义的字符串，用以描述该实例。</li>
+<li>若想在调试时打印出更详尽的对象描述信息，则应实现debugDescription方法。</li>
+</ul>
+<h4 id="18-尽量使用不可变对象"><a href="#18-尽量使用不可变对象" class="headerlink" title="18.尽量使用不可变对象"></a>18.尽量使用不可变对象</h4><ul>
+<li>尽量创建不可变的对象。</li>
+<li>若某属性仅可用于对象内部修改，则在“class-continuation分类”中将其由readonly属性扩展为readwrite属性。</li>
+<li>不要把可变的collection作为属性公开，而应提供相关方法，以此修改对象中的可变collection。</li>
+</ul>
+<h4 id="19-使用清晰而协调的命名方式"><a href="#19-使用清晰而协调的命名方式" class="headerlink" title="19.使用清晰而协调的命名方式"></a>19.使用清晰而协调的命名方式</h4><ul>
+<li>起名时应遵从标准的Objective-C命名规范，这样创建出来的接口更容易为开发者所理解。</li>
+<li>方法名要言简意赅，从左至右读起来要像个日常用语中的句子才好。</li>
+<li>方法名里不要使用缩略后的类型名称。</li>
+<li>给方法起名时的第一要务就是确保其风格与你自己的代码或所要集成的框架相符。</li>
+</ul>
+<h4 id="20-为私有方法名加前缀"><a href="#20-为私有方法名加前缀" class="headerlink" title="20.为私有方法名加前缀"></a>20.为私有方法名加前缀</h4><ul>
+<li>给私有方法的名称加上前缀，这样可以很容易的将其同公共方法区分开。</li>
+<li>不要单用一个下划线做私有方法的前缀，因为这种做法是预留给苹果公司用的。</li>
+</ul>
+<h4 id="21-理解-Objective-C错误模型"><a href="#21-理解-Objective-C错误模型" class="headerlink" title="21.理解 Objective-C错误模型"></a>21.理解 Objective-C错误模型</h4><ul>
+<li>只有发生了可使整个应用程序崩溃的严重错误时，才应使用异常。</li>
+<li>在错误不那么严重的情况下，可以指派委托方法（delegate method）来处理错误，也可以把错误信息放在NSError对象里，经由“输出参数”返回给调用者。</li>
+</ul>
+<h4 id="22-理解-NSCopying协议"><a href="#22-理解-NSCopying协议" class="headerlink" title="22.理解 NSCopying协议"></a>22.理解 NSCopying协议</h4><ul>
+<li>若想令自己所写的对象具有拷贝功能，则需实现NSCopying协议。</li>
+<li>如果自定义的对象分为可变版本和不可变版本，那么就要同时实现NSCopying与NSMutableCopying协议。</li>
+<li>复制对象时需决定采用浅拷贝还是深拷贝，一般情况下应尽量执行浅拷贝。</li>
+<li>如果你所写的对象需要深拷贝，那么可考虑新增一个专门执行深拷贝的方法。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/blog/tags/Effective-Objective-C-2-0/" rel="tag"># Effective Objective-C 2.0</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2018/01/02/EffectiveObjectiveCPart2/" rel="next" title="Effective Objective-C 2.0（第2章）">
+                  <i class="fa fa-chevron-left"></i> Effective Objective-C 2.0（第2章）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2018/01/04/EffectiveObjectiveCPart4/" rel="prev" title="Effective Objective-C 2.0（第4章）">
+                  Effective Objective-C 2.0（第4章） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/blog/images/avatar.jpg"
+      alt="Chance">
+  <p class="site-author-name" itemprop="name">Chance</p>
+  <div class="site-description motion-element" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/blog/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/blog/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/lcbest" title="GitHub &rarr; https://github.com/lcbest" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:lc@chanceli.com" title="E-Mail &rarr; mailto:lc@chanceli.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编写高质量iOS与OS-X代码的52个有效方法"><span class="nav-number">1.</span> <span class="nav-text">编写高质量iOS与OS X代码的52个有效方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第3章-接口与API设计"><span class="nav-number">1.1.</span> <span class="nav-text">第3章 接口与API设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#15-用前缀避免命名空间冲突"><span class="nav-number">1.1.1.</span> <span class="nav-text">15.用前缀避免命名空间冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-提供“全能初始化方法”"><span class="nav-number">1.1.2.</span> <span class="nav-text">16.提供“全能初始化方法”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-实现description方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">17.实现description方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-尽量使用不可变对象"><span class="nav-number">1.1.4.</span> <span class="nav-text">18.尽量使用不可变对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-使用清晰而协调的命名方式"><span class="nav-number">1.1.5.</span> <span class="nav-text">19.使用清晰而协调的命名方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-为私有方法名加前缀"><span class="nav-number">1.1.6.</span> <span class="nav-text">20.为私有方法名加前缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-理解-Objective-C错误模型"><span class="nav-number">1.1.7.</span> <span class="nav-text">21.理解 Objective-C错误模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-理解-NSCopying协议"><span class="nav-number">1.1.8.</span> <span class="nav-text">22.理解 NSCopying协议</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chance</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/blog/js/utils.js?v=7.3.0"></script>
+  <script src="/blog/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/blog/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.3.0"></script>
+<script src="/blog/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>

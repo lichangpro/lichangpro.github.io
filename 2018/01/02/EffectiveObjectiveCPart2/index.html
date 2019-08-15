@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.3.0">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="编写高质量iOS与OS X代码的52个有效方法第2章 对象、消息、运行期">
+<meta name="keywords" content="Effective Objective-C 2.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Objective-C 2.0（第2章）">
+<meta property="og:url" content="http://chanceli.com/2018/01/02/EffectiveObjectiveCPart2/index.html">
+<meta property="og:site_name" content="Chance">
+<meta property="og:description" content="编写高质量iOS与OS X代码的52个有效方法第2章 对象、消息、运行期">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-21T11:04:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective Objective-C 2.0（第2章）">
+<meta name="twitter:description" content="编写高质量iOS与OS X代码的52个有效方法第2章 对象、消息、运行期">
+  <link rel="canonical" href="http://chanceli.com/2018/01/02/EffectiveObjectiveCPart2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Effective Objective-C 2.0（第2章） | Chance</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-right">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+      <div class="site-meta-headline">
+        <a>
+          <img class="custom-logo-image" src="https://chanceli.com/images/avatar.jpg#/images/avatar.jpg" alt="Chance">
+        </a>
+      </div>
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chance</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chanceli.com/blog/2018/01/02/EffectiveObjectiveCPart2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chance">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chance">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">Effective Objective-C 2.0（第2章）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-02 00:02:00" itemprop="dateCreated datePublished" datetime="2018-01-02T00:02:00+08:00">2018-01-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-12-21 19:04:51" itemprop="dateModified" datetime="2018-12-21T19:04:51+08:00">2018-12-21</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/Effective-Objective-C-2-0/" itemprop="url" rel="index"><span itemprop="name">Effective Objective-C 2.0</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="编写高质量iOS与OS-X代码的52个有效方法"><a href="#编写高质量iOS与OS-X代码的52个有效方法" class="headerlink" title="编写高质量iOS与OS X代码的52个有效方法"></a>编写高质量iOS与OS X代码的52个有效方法</h2><h3 id="第2章-对象、消息、运行期"><a href="#第2章-对象、消息、运行期" class="headerlink" title="第2章 对象、消息、运行期"></a>第2章 对象、消息、运行期</h3><a id="more"></a>
+<h4 id="6-理解“属性”这一概念"><a href="#6-理解“属性”这一概念" class="headerlink" title="6.理解“属性”这一概念"></a>6.理解“属性”这一概念</h4><ul>
+<li>可以使用 @synthesize 语法来指定实例变量的名字。</li>
+<li>@dynamic 关键字会告诉编译器：不要自动创建实现属性所用的实例变量，也不要为其创建存取方法。而且，在编译器访问属性的代码时，即使编译器发现没有定义存取方法，也不会报错，它相信这些方法能在运行期找到。</li>
+<li>atomic同步锁会严重影响性能，并且并不能保证线程安全。所以使用nonatomic。</li>
+<li>atomic为什么不能保证线程安全？例：一个线程在连续多次读取某属性值的过程中有别的线程在同时改写该值，那么即便将属性声明为atomic，也还是会读到不同的属性值。</li>
+</ul>
+<h4 id="7-在对象内部尽量直接访问实例变量"><a href="#7-在对象内部尽量直接访问实例变量" class="headerlink" title="7.在对象内部尽量直接访问实例变量"></a>7.在对象内部尽量直接访问实例变量</h4><p>在对象内部读取数据时，应该直接通过实例变量来读，而写入数据时，则应该通过属性来写（set方法，为了触发KVO）。<br>在初始化方法和dealloc方法中，总是应该直接通过实例变量来读写数据。<br>使用懒加载时，需要通过属性来读取数据。（get方法）</p>
+<h4 id="8-理解“对象等同性”这一概念"><a href="#8-理解“对象等同性”这一概念" class="headerlink" title="8.理解“对象等同性”这一概念"></a>8.理解“对象等同性”这一概念</h4><p>== 比较的是两个指针本身，而不是所指的对象。<br>isEqual 比较的两个对象。<br>相同的对象必须具有相同的哈希码，但是两个哈希码相同的对象却未必相同。<br>不要盲目地逐个检测每条属性，而是应该依照具体需求来制定监测方案。<br>编写hash方法时，应该使用计算速度快而且哈希码碰撞几率低的算法。</p>
+<h4 id="9-以“类族模式”隐藏实现细节"><a href="#9-以“类族模式”隐藏实现细节" class="headerlink" title="9.以“类族模式”隐藏实现细节"></a>9.以“类族模式”隐藏实现细节</h4><ul>
+<li>类族模式可以把实现细节隐藏在一套简单的公共接口后面。</li>
+<li>系统框架中经常使用类族。</li>
+<li>从类族的公共抽象基类中继承子类时要当心。</li>
+</ul>
+<h4 id="10-在既有类中使用关联对象存放自定义数据"><a href="#10-在既有类中使用关联对象存放自定义数据" class="headerlink" title="10.在既有类中使用关联对象存放自定义数据"></a>10.在既有类中使用关联对象存放自定义数据</h4><p>objc_setAssociatedObject<br>objc_getAssociatedObject<br>objc_removeAssociatedObject</p>
+<h4 id="11-理解objc-msgSend的作用"><a href="#11-理解objc-msgSend的作用" class="headerlink" title="11.理解objc_msgSend的作用"></a>11.理解objc_msgSend的作用</h4><ul>
+<li>消息由接收者、选择子及参数构成。给某对象发送消息也就相当于在该对象上调用方法。</li>
+<li>发给某对象的全部消息都要由动态消息派发系统来处理，该系统会查出对应的方法，并执行其代码。</li>
+</ul>
+<h4 id="12-理解消息转发机制"><a href="#12-理解消息转发机制" class="headerlink" title="12.理解消息转发机制"></a>12.理解消息转发机制</h4><ul>
+<li>若对象无法响应某个选择子，则进入消息转发流程。</li>
+<li>通过运行期的动态方法解析功能，我们可以在需要用到某个方法时再将其加入类中。</li>
+<li>对象可以把其无法解读的某些选择子转交给其他对象来处理。</li>
+<li>经过上述两步后，如果还是没办法处理选择子，那就启动完整的消息转发机制。</li>
+</ul>
+<h4 id="13-用“方法调配技术”调试“黑盒方法”"><a href="#13-用“方法调配技术”调试“黑盒方法”" class="headerlink" title="13.用“方法调配技术”调试“黑盒方法”"></a>13.用“方法调配技术”调试“黑盒方法”</h4><ul>
+<li>在运行期，可以向类中新增或替换选择子所对应的方法实现。</li>
+<li>使用另一份实现来替换原有的方法实现，这道工序叫做“方法调配”，开发者常使用此技术向原有实现中添加新功能。</li>
+<li>一般来说，只有调试程序的时候才需要在运行期修改方法实现，这种做法不宜滥用。</li>
+</ul>
+<h4 id="14-理解“类对象”的用意"><a href="#14-理解“类对象”的用意" class="headerlink" title="14.理解“类对象”的用意"></a>14.理解“类对象”的用意</h4><ul>
+<li>每个实例都有一个指向Class对象的指针，用以表明其类型，而这些Class对象则构成了类的继承体系。</li>
+<li>如果对象类型无法在编译期确定，那么就应该使用类型信息查询方法来探知。</li>
+<li>尽量使用类型信息查询方法来确定对象类型，而不要直接比较类对象，因为某些对象可能实现了消息转发功能。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/blog/tags/Effective-Objective-C-2-0/" rel="tag"># Effective Objective-C 2.0</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2018/01/01/EffectiveObjectiveCPart1/" rel="next" title="Effective Objective-C 2.0（第1章）">
+                  <i class="fa fa-chevron-left"></i> Effective Objective-C 2.0（第1章）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2018/01/03/EffectiveObjectiveCPart3/" rel="prev" title="Effective Objective-C 2.0（第3章）">
+                  Effective Objective-C 2.0（第3章） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/blog/images/avatar.jpg"
+      alt="Chance">
+  <p class="site-author-name" itemprop="name">Chance</p>
+  <div class="site-description motion-element" itemprop="description">Stay hungry, stay foolish.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/blog/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/blog/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/lcbest" title="GitHub &rarr; https://github.com/lcbest" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:lc@chanceli.com" title="E-Mail &rarr; mailto:lc@chanceli.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编写高质量iOS与OS-X代码的52个有效方法"><span class="nav-number">1.</span> <span class="nav-text">编写高质量iOS与OS X代码的52个有效方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第2章-对象、消息、运行期"><span class="nav-number">1.1.</span> <span class="nav-text">第2章 对象、消息、运行期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-理解“属性”这一概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">6.理解“属性”这一概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-在对象内部尽量直接访问实例变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">7.在对象内部尽量直接访问实例变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-理解“对象等同性”这一概念"><span class="nav-number">1.1.3.</span> <span class="nav-text">8.理解“对象等同性”这一概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-以“类族模式”隐藏实现细节"><span class="nav-number">1.1.4.</span> <span class="nav-text">9.以“类族模式”隐藏实现细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-在既有类中使用关联对象存放自定义数据"><span class="nav-number">1.1.5.</span> <span class="nav-text">10.在既有类中使用关联对象存放自定义数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-理解objc-msgSend的作用"><span class="nav-number">1.1.6.</span> <span class="nav-text">11.理解objc_msgSend的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-理解消息转发机制"><span class="nav-number">1.1.7.</span> <span class="nav-text">12.理解消息转发机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-用“方法调配技术”调试“黑盒方法”"><span class="nav-number">1.1.8.</span> <span class="nav-text">13.用“方法调配技术”调试“黑盒方法”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-理解“类对象”的用意"><span class="nav-number">1.1.9.</span> <span class="nav-text">14.理解“类对象”的用意</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chance</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/blog/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/blog/js/utils.js?v=7.3.0"></script>
+  <script src="/blog/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/blog/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.3.0"></script>
+<script src="/blog/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>
