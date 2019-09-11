@@ -53,19 +53,19 @@
   };
 </script>
 
-  <meta name="description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
+  <meta name="description" content="第5章 串串（string）是由零个或多个字符组成的有限序列，又名叫字符串。">
 <meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《大话数据结构》学习笔记一">
-<meta property="og:url" content="https://lichangpro.github.io/2019/03/05/DataStructurePart1/index.html">
+<meta property="og:title" content="《大话数据结构》四">
+<meta property="og:url" content="https://lichangpro.github.io/2019/09/10/DataStructurePart4/index.html">
 <meta property="og:site_name" content="Chance">
-<meta property="og:description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
+<meta property="og:description" content="第5章 串串（string）是由零个或多个字符组成的有限序列，又名叫字符串。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-14T15:50:48.000Z">
+<meta property="og:updated_time" content="2019-09-10T14:25:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《大话数据结构》学习笔记一">
-<meta name="twitter:description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
-  <link rel="canonical" href="https://lichangpro.github.io/2019/03/05/DataStructurePart1/">
+<meta name="twitter:title" content="《大话数据结构》四">
+<meta name="twitter:description" content="第5章 串串（string）是由零个或多个字符组成的有限序列，又名叫字符串。">
+  <link rel="canonical" href="https://lichangpro.github.io/2019/09/10/DataStructurePart4/">
 
 
 <script id="page-configurations">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>《大话数据结构》学习笔记一 | Chance</title>
+  <title>《大话数据结构》四 | Chance</title>
   
 
 
@@ -234,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lichangpro.github.io/2019/03/05/DataStructurePart1/">
+    <link itemprop="mainEntityOfPage" href="https://lichangpro.github.io/2019/09/10/DataStructurePart4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chance">
@@ -248,7 +248,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">《大话数据结构》学习笔记一
+          <h1 class="post-title" itemprop="name headline">《大话数据结构》四
 
             
           </h1>
@@ -265,7 +265,7 @@
                 
               
 
-              <time title="创建时间：2019-03-05 23:41:00" itemprop="dateCreated datePublished" datetime="2019-03-05T23:41:00+08:00">2019-03-05</time>
+              <time title="创建时间：2019-09-10 22:24:00" itemprop="dateCreated datePublished" datetime="2019-09-10T22:24:00+08:00">2019-09-10</time>
             </span>
           
             <span class="post-meta-item">
@@ -293,53 +293,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="第1章-数据结构绪论"><a href="#第1章-数据结构绪论" class="headerlink" title="第1章 数据结构绪论"></a>第1章 数据结构绪论</h1><ul>
-<li>数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。</li>
-<li>数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。</li>
-<li>数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。</li>
-<li>数据对象：是性质相同的数据元素的集合，是数据的子集。</li>
-<li>数据结构：是相互之间存在一种或多种特定关系的数据元素的集合。<a id="more"></a>
-<h2 id="逻辑结构与物理结构"><a href="#逻辑结构与物理结构" class="headerlink" title="逻辑结构与物理结构"></a>逻辑结构与物理结构</h2><h4 id="1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："><a href="#1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：" class="headerlink" title="1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："></a>1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：</h4></li>
-<li>集合机构</li>
-<li>线性结构</li>
-<li>树形结构</li>
-<li>图形结构</li>
-</ul>
-<h4 id="2-物理结构：是指数据的逻辑结构在计算机中的存储形式。"><a href="#2-物理结构：是指数据的逻辑结构在计算机中的存储形式。" class="headerlink" title="2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。"></a>2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。</h4><ul>
-<li>顺序存储结构：是把数据元素放在地址连续的存储单元里，其数据间的逻辑关系和物理关系是一致的。</li>
-<li>链式存储结构：是把数据元素存放在任意的存储单元里，这组单元可以是连续的，也可以是不连续的。</li>
-</ul>
-<h2 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h2><p>数据类型：是指一组性质相同的值得集合及定义在此集合上的一些操作的总称。<br>C语言中，按照取值的不同，可以分为两类：</p>
-<ul>
-<li>原子类型：是不可以再分解的基本类型，包括整型、实型、字符型等。</li>
-<li>结构类型：由若干个类型组合而成，是可以再分解的。例如，整型数组是由若干整型数组组成的。</li>
-</ul>
-<p>抽象数据类型（Abstract Data Type, ADT）：是指一个数学模型及定义在该模型上的一组操作。</p>
-<h1 id="第2章-算法"><a href="#第2章-算法" class="headerlink" title="第2章 算法"></a>第2章 算法</h1><p>算法是解决特定问题求解步骤的描述，在计算机中表现为指令的有序序列，并且每条指令表示一个或多个操作。</p>
-<h2 id="算法的特性"><a href="#算法的特性" class="headerlink" title="算法的特性"></a>算法的特性</h2><ol>
-<li>输入输出</li>
-<li>有穷性</li>
-<li>确定性</li>
-<li>可行性</li>
+        <h1 id="第5章-串"><a href="#第5章-串" class="headerlink" title="第5章 串"></a>第5章 串</h1><p>串（string）是由零个或多个字符组成的有限序列，又名叫字符串。</p>
+<a id="more"></a>
+
+<h2 id="串的定义"><a href="#串的定义" class="headerlink" title="串的定义"></a>串的定义</h2><blockquote>
+<p>串（string）是由零个或多个字符组成的有限序列，又名叫字符串。</p>
+</blockquote>
+<h2 id="串的比较"><a href="#串的比较" class="headerlink" title="串的比较"></a>串的比较</h2><p>给定两个串：s= “a<sub>1</sub>a<sub>2</sub>……a<sub>n</sub>“,  t= “b<sub>1</sub>b<sub>2</sub>……b<sub>m</sub>“, 当满足以下条件之一时，s&lt;t。</p>
+<ol>
+<li>n&lt;m，且a<sub>i</sub>=b<sub>i</sub>（i=1, 2, ……, n）。</li>
+<li>存在某个k&lt;min(m, n), 使得a<sub>i</sub>=b<sub>i</sub>（i=1，2，……，k-1）a<sub>k</sub>&lt;b<sub>k</sub></li>
 </ol>
-<h2 id="算法设计的要求"><a href="#算法设计的要求" class="headerlink" title="算法设计的要求"></a>算法设计的要求</h2><ol>
-<li>正确性</li>
-<li>可读性</li>
-<li>健壮性</li>
-<li>时间效率高和存储量低</li>
-</ol>
-<h2 id="算法效率的度量方法"><a href="#算法效率的度量方法" class="headerlink" title="算法效率的度量方法"></a>算法效率的度量方法</h2><ol>
-<li>事后统计方法（不科学、不准确）</li>
-<li>事前分析估算方法</li>
-</ol>
-<h2 id="函数的渐近式增长"><a href="#函数的渐近式增长" class="headerlink" title="函数的渐近式增长"></a>函数的渐近式增长</h2><p>函数的渐近增长：给定两个函数 f(n) 和 g(n), 如果存在一个整数N，使得对于所有的 n &gt; N, f(n) 总是比 g(n) 大，那么，我们说 f(n) 的增长渐近快于 g(n)。</p>
-<h2 id="算法时间复杂度"><a href="#算法时间复杂度" class="headerlink" title="算法时间复杂度"></a>算法时间复杂度</h2><p>在进行算法分析时，语句总的执行次数 T(n) 是关于问题规模 n 的函数，进而分析 T(n) 随 n 的变化情况并确定 T(n) 的数量级。算法的时间复杂度，也就是算法的时间度量，记作：T(n) = O(f(n))。它表示随问题规模 n 的增大，算法执行时间的增长率和 f(n) 的增长率相同，称作算法的渐近时间复杂度，简称为时间复杂度。其中 f(n) 是问题规模 n 的某个函数。</p>
-<h2 id="推导大-O-阶方法"><a href="#推导大-O-阶方法" class="headerlink" title="推导大 O 阶方法"></a>推导大 O 阶方法</h2><ol>
-<li>用常数 1 取代运行时间中的所有加法常数。</li>
-<li>在修改后的运行次数函数中，只保留最高阶项。</li>
-<li>如果最高阶存在且不是 1，则去除与这个项相乘的常数。<br>得到的结果就是大 O 阶。</li>
-</ol>
-<h2 id="常见的时间复杂度"><a href="#常见的时间复杂度" class="headerlink" title="常见的时间复杂度"></a>常见的时间复杂度</h2><p>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n^2) &lt; O(n^3) &lt; O(2^n) &lt; O(n!) &lt; O(n^n)</p>
+<h2 id="串的抽象数据类型"><a href="#串的抽象数据类型" class="headerlink" title="串的抽象数据类型"></a>串的抽象数据类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ADT 串（string）</span><br><span class="line">Data</span><br><span class="line">  串中元素仅由一个字符组成，相邻元素具有前驱和后继关系。</span><br><span class="line">Operation</span><br><span class="line">  StrAssign(T,*chars):生成一个其值等于字符串常量chars的串T。</span><br><span class="line">  StrCopy(T,S):串S存在，由串复制得串T。</span><br><span class="line">  ClearString(S):串S存在，将串清空。</span><br><span class="line">  StringEmpty(S):若串为空，返回true，否则返回false。</span><br><span class="line">  StrLength(S):返回串S的元素个数，即串的长度。</span><br><span class="line">  StrCompare(S,T):若S&gt;T，返回值&gt;0,若S=T，返回0，若S&lt;T，返回值&lt;0.</span><br><span class="line">  Concat(T,S1,S2):用T返回由S1和S2联接而成的新串。</span><br><span class="line">  SubString(Sub,S,pos,len):串S存在，1&lt;=pos&lt;=StrLength(S)，且0&lt;=len&lt;=StrLength(S)-pos+1,用Sub返回串S的第pos个字符长度为len的子串。</span><br><span class="line">  Index(S,T,pos):串S和T存在，T是非空串，1&lt;=pos&lt;=StrLength(S)。若主串S中存在和串T值相同的子串，则返回它在主串S中第pos个字符之后第一次出现的位置，否则返回0。</span><br><span class="line">  Replace(S,T,V):串S、T和V存在，T是非空串。用V替换主串S中出现的所有与T相等的不重叠的子串。</span><br><span class="line">  StrInsert(S,pos,T):串S和T存在，1&lt;=pos&lt;=StrLength(S)+1。在串S的第pos个字符之前插入串T。</span><br><span class="line">  StrDelete(S,pos,len):串S存在，1&lt;=pos&lt;=StrLength(S)-len+1。从串S中删除第pos个字符起长度为len的子串。</span><br><span class="line">endADT</span><br></pre></td></tr></table></figure>
+
+<p>Index 的实现算法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* T为非空串。若主串S中第pos个字符之后存在与T相等的子串，则返回第一个这样的子串在S中的位置，否则返回0 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Index</span><span class="params">(String S, String T, <span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n,m,i;</span><br><span class="line">  String sub;</span><br><span class="line">  <span class="keyword">if</span> (pos &gt; <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    n = StrLength(S);</span><br><span class="line">    m = StrLength(T);</span><br><span class="line">    i = pos;</span><br><span class="line">    <span class="keyword">while</span> ( i &lt;= n-m+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      SubString(sub,S,i,m); <span class="comment">/* 取主串第i个位置 长度与T相等子串给sub */</span></span><br><span class="line">      <span class="keyword">if</span> (StrCompare(sub,T) != <span class="number">0</span>)  <span class="comment">/* 如果两串不相等 */</span></span><br><span class="line">        ++i;</span><br><span class="line">      <span class="keyword">else</span>  <span class="comment">/* 如果两串相等 */</span></span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">/* 若无子串与T相等，返回0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当中用到了 StrLength、SubString、StrCompare 等基本操作来实现。</p>
+<h2 id="串的存储结构"><a href="#串的存储结构" class="headerlink" title="串的存储结构"></a>串的存储结构</h2><h3 id="串的顺序存储结构"><a href="#串的顺序存储结构" class="headerlink" title="串的顺序存储结构"></a>串的顺序存储结构</h3><h3 id="串的链式存储结构"><a href="#串的链式存储结构" class="headerlink" title="串的链式存储结构"></a>串的链式存储结构</h3><h2 id="朴素的模式匹配算法"><a href="#朴素的模式匹配算法" class="headerlink" title="朴素的模式匹配算法"></a>朴素的模式匹配算法</h2><p>子串的定位操作通常称做串的模式匹配。<br>假设我们要从下面的主串S=“goodgoogle”中，找到T=“google这个子串的位置”。<br>简单的来说，就是对主串的每一个字符作为子串开头，与要匹配的字符串进行匹配。对主串做大循环，每个字符开头做T的长度的小循环，直到匹配成功或全部遍历完成为止。<br>最好的情况，时间复杂度为O(1)。<br>稍差一些的情况，时间复杂度为O(n+m)，其中n为主串长度，m为要匹配的子串长度。<br>根据等概率原则，平均是(n+m)/2次查找，时间复杂度为O(n+m)。</p>
+<h2 id="KMP模式匹配算法"><a href="#KMP模式匹配算法" class="headerlink" title="KMP模式匹配算法"></a>KMP模式匹配算法</h2><p>D.E.Knuth、J.H.Morris 和 V.R.Pratt 发表一个模式匹配算法，可以大大避免重复遍历的情况，我们把它称之为克努特-莫里斯-普拉特算法，简称 KMP 算法。</p>
 
     </div>
 
@@ -365,8 +337,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/03/05/CodingGuidelines/" rel="next" title="iOS 代码规范">
-                  <i class="fa fa-chevron-left"></i> iOS 代码规范
+                <a href="/2019/09/08/DataStructurePart3/" rel="next" title="《大话数据结构》三">
+                  <i class="fa fa-chevron-left"></i> 《大话数据结构》三
                 </a>
               
             </div>
@@ -375,8 +347,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/05/29/DataStructurePart2/" rel="prev" title="《大话数据结构》学习笔记二">
-                  《大话数据结构》学习笔记二 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/09/10/优化 iOS 安装包大小/" rel="prev" title="【iOS 开发】优化 iOS 安装包大小">
+                  【iOS 开发】优化 iOS 安装包大小 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -572,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第1章-数据结构绪论"><span class="nav-number">1.</span> <span class="nav-text">第1章 数据结构绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑结构与物理结构"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑结构与物理结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-物理结构：是指数据的逻辑结构在计算机中的存储形式。"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">抽象数据类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第2章-算法"><span class="nav-number">2.</span> <span class="nav-text">第2章 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的特性"><span class="nav-number">2.1.</span> <span class="nav-text">算法的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法设计的要求"><span class="nav-number">2.2.</span> <span class="nav-text">算法设计的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法效率的度量方法"><span class="nav-number">2.3.</span> <span class="nav-text">算法效率的度量方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的渐近式增长"><span class="nav-number">2.4.</span> <span class="nav-text">函数的渐近式增长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法时间复杂度"><span class="nav-number">2.5.</span> <span class="nav-text">算法时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推导大-O-阶方法"><span class="nav-number">2.6.</span> <span class="nav-text">推导大 O 阶方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的时间复杂度"><span class="nav-number">2.7.</span> <span class="nav-text">常见的时间复杂度</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第5章-串"><span class="nav-number">1.</span> <span class="nav-text">第5章 串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#串的定义"><span class="nav-number">1.1.</span> <span class="nav-text">串的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串的比较"><span class="nav-number">1.2.</span> <span class="nav-text">串的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串的抽象数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">串的抽象数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串的存储结构"><span class="nav-number">1.4.</span> <span class="nav-text">串的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#串的顺序存储结构"><span class="nav-number">1.4.1.</span> <span class="nav-text">串的顺序存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#串的链式存储结构"><span class="nav-number">1.4.2.</span> <span class="nav-text">串的链式存储结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#朴素的模式匹配算法"><span class="nav-number">1.5.</span> <span class="nav-text">朴素的模式匹配算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KMP模式匹配算法"><span class="nav-number">1.6.</span> <span class="nav-text">KMP模式匹配算法</span></a></li></ol></li></ol></div>
             
 
           </div>

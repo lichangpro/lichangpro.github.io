@@ -53,19 +53,19 @@
   };
 </script>
 
-  <meta name="description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
-<meta name="keywords" content="学习笔记">
+  <meta name="description" content="最近优化了一下我负责的两个App ipa 包大小，记录一下优化方法。">
+<meta name="keywords" content="包大小,优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《大话数据结构》学习笔记一">
-<meta property="og:url" content="https://lichangpro.github.io/2019/03/05/DataStructurePart1/index.html">
+<meta property="og:title" content="【iOS 开发】优化 iOS 安装包大小">
+<meta property="og:url" content="https://lichangpro.github.io/2019/09/10/优化 iOS 安装包大小/index.html">
 <meta property="og:site_name" content="Chance">
-<meta property="og:description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
+<meta property="og:description" content="最近优化了一下我负责的两个App ipa 包大小，记录一下优化方法。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-14T15:50:48.000Z">
+<meta property="og:updated_time" content="2019-09-11T17:57:37.667Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《大话数据结构》学习笔记一">
-<meta name="twitter:description" content="第1章 数据结构绪论 数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。 数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。 数据对象：是性质相同的数据元素的集合，是数据的子集。 数据结构：是相互之间存在一种或多种特定关系的数据元">
-  <link rel="canonical" href="https://lichangpro.github.io/2019/03/05/DataStructurePart1/">
+<meta name="twitter:title" content="【iOS 开发】优化 iOS 安装包大小">
+<meta name="twitter:description" content="最近优化了一下我负责的两个App ipa 包大小，记录一下优化方法。">
+  <link rel="canonical" href="https://lichangpro.github.io/2019/09/10/优化 iOS 安装包大小/">
 
 
 <script id="page-configurations">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>《大话数据结构》学习笔记一 | Chance</title>
+  <title>【iOS 开发】优化 iOS 安装包大小 | Chance</title>
   
 
 
@@ -234,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lichangpro.github.io/2019/03/05/DataStructurePart1/">
+    <link itemprop="mainEntityOfPage" href="https://lichangpro.github.io/2019/09/10/优化 iOS 安装包大小/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chance">
@@ -248,7 +248,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">《大话数据结构》学习笔记一
+          <h1 class="post-title" itemprop="name headline">【iOS 开发】优化 iOS 安装包大小
 
             
           </h1>
@@ -265,7 +265,7 @@
                 
               
 
-              <time title="创建时间：2019-03-05 23:41:00" itemprop="dateCreated datePublished" datetime="2019-03-05T23:41:00+08:00">2019-03-05</time>
+              <time title="创建时间：2019-09-10 23:35:00" itemprop="dateCreated datePublished" datetime="2019-09-10T23:35:00+08:00">2019-09-10</time>
             </span>
           
             <span class="post-meta-item">
@@ -274,7 +274,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/《大话数据结构》/" itemprop="url" rel="index"><span itemprop="name">《大话数据结构》</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS-开发/" itemprop="url" rel="index"><span itemprop="name">iOS 开发</span></a></span>
 
                 
                 
@@ -293,53 +293,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="第1章-数据结构绪论"><a href="#第1章-数据结构绪论" class="headerlink" title="第1章 数据结构绪论"></a>第1章 数据结构绪论</h1><ul>
-<li>数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。</li>
-<li>数据元素： 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。</li>
-<li>数据项：一个数据元素可以由若干个数据项组成。数据项是数据不可分割的最小单位。</li>
-<li>数据对象：是性质相同的数据元素的集合，是数据的子集。</li>
-<li>数据结构：是相互之间存在一种或多种特定关系的数据元素的集合。<a id="more"></a>
-<h2 id="逻辑结构与物理结构"><a href="#逻辑结构与物理结构" class="headerlink" title="逻辑结构与物理结构"></a>逻辑结构与物理结构</h2><h4 id="1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："><a href="#1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：" class="headerlink" title="1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："></a>1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：</h4></li>
-<li>集合机构</li>
-<li>线性结构</li>
-<li>树形结构</li>
-<li>图形结构</li>
+        <p>最近优化了一下我负责的两个App ipa 包大小，记录一下优化方法。</p>
+<a id="more"></a>
+
+<h3 id="App1"><a href="#App1" class="headerlink" title="App1:"></a>App1:</h3><p>优化前：37.8MB  优化后：15.7MB</p>
+<ol>
+<li>移除重复图片，多余图片，压缩大的图片，去掉用不到的类。包大小变为35.1MB，减少了2.7MB。</li>
+<li>把环信含音视频的 SDK 换成不含音视频的 SDK。包大小变为28MB，减少了7.1MB。</li>
+<li>移除 armv7，不再支持 iPhone 4、iPhone 4s。包大小变为20.4MB，减少了7.6MB。</li>
+<li>移除百度地图 SDK (项目里只用到了百度定位 SDK )。包大小变为16.6MB，减少了3.8MB。</li>
+<li>移除环信 UI 中的兔斯基 GIF 图。包大小变为16MB，减少了0.6MB。</li>
+<li>启动图替换为压缩后的启动图。包大小变为15.7MB，减少了0.3MB。</li>
+</ol>
+<h3 id="App2："><a href="#App2：" class="headerlink" title="App2："></a>App2：</h3><p>优化前：27.7MB  优化后：9.2MB</p>
+<ol>
+<li>移除环信音视频 SDK，包大小变为20.3MB，减少了7.4MB。</li>
+<li>移除百度地图 SDK，包大小变为14.8MB，减少了5.5MB。</li>
+<li>移除 armv7，包大小变为9.8MB，减少了5MB。</li>
+<li>移除环信 UI 中的兔斯基 GIF 图。包大小变为9.2MB，减少了0.6MB。</li>
+</ol>
+<h3 id="小提示"><a href="#小提示" class="headerlink" title="小提示"></a>小提示</h3><ul>
+<li>AppStore 上 App 信息中的展示的大小指的是安装大小，并非下载大小。所以要比打出来的 ipa 包大很多。</li>
+<li>在各个机型上面的大小也不尽相同。</li>
 </ul>
-<h4 id="2-物理结构：是指数据的逻辑结构在计算机中的存储形式。"><a href="#2-物理结构：是指数据的逻辑结构在计算机中的存储形式。" class="headerlink" title="2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。"></a>2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。</h4><ul>
-<li>顺序存储结构：是把数据元素放在地址连续的存储单元里，其数据间的逻辑关系和物理关系是一致的。</li>
-<li>链式存储结构：是把数据元素存放在任意的存储单元里，这组单元可以是连续的，也可以是不连续的。</li>
-</ul>
-<h2 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h2><p>数据类型：是指一组性质相同的值得集合及定义在此集合上的一些操作的总称。<br>C语言中，按照取值的不同，可以分为两类：</p>
-<ul>
-<li>原子类型：是不可以再分解的基本类型，包括整型、实型、字符型等。</li>
-<li>结构类型：由若干个类型组合而成，是可以再分解的。例如，整型数组是由若干整型数组组成的。</li>
-</ul>
-<p>抽象数据类型（Abstract Data Type, ADT）：是指一个数学模型及定义在该模型上的一组操作。</p>
-<h1 id="第2章-算法"><a href="#第2章-算法" class="headerlink" title="第2章 算法"></a>第2章 算法</h1><p>算法是解决特定问题求解步骤的描述，在计算机中表现为指令的有序序列，并且每条指令表示一个或多个操作。</p>
-<h2 id="算法的特性"><a href="#算法的特性" class="headerlink" title="算法的特性"></a>算法的特性</h2><ol>
-<li>输入输出</li>
-<li>有穷性</li>
-<li>确定性</li>
-<li>可行性</li>
-</ol>
-<h2 id="算法设计的要求"><a href="#算法设计的要求" class="headerlink" title="算法设计的要求"></a>算法设计的要求</h2><ol>
-<li>正确性</li>
-<li>可读性</li>
-<li>健壮性</li>
-<li>时间效率高和存储量低</li>
-</ol>
-<h2 id="算法效率的度量方法"><a href="#算法效率的度量方法" class="headerlink" title="算法效率的度量方法"></a>算法效率的度量方法</h2><ol>
-<li>事后统计方法（不科学、不准确）</li>
-<li>事前分析估算方法</li>
-</ol>
-<h2 id="函数的渐近式增长"><a href="#函数的渐近式增长" class="headerlink" title="函数的渐近式增长"></a>函数的渐近式增长</h2><p>函数的渐近增长：给定两个函数 f(n) 和 g(n), 如果存在一个整数N，使得对于所有的 n &gt; N, f(n) 总是比 g(n) 大，那么，我们说 f(n) 的增长渐近快于 g(n)。</p>
-<h2 id="算法时间复杂度"><a href="#算法时间复杂度" class="headerlink" title="算法时间复杂度"></a>算法时间复杂度</h2><p>在进行算法分析时，语句总的执行次数 T(n) 是关于问题规模 n 的函数，进而分析 T(n) 随 n 的变化情况并确定 T(n) 的数量级。算法的时间复杂度，也就是算法的时间度量，记作：T(n) = O(f(n))。它表示随问题规模 n 的增大，算法执行时间的增长率和 f(n) 的增长率相同，称作算法的渐近时间复杂度，简称为时间复杂度。其中 f(n) 是问题规模 n 的某个函数。</p>
-<h2 id="推导大-O-阶方法"><a href="#推导大-O-阶方法" class="headerlink" title="推导大 O 阶方法"></a>推导大 O 阶方法</h2><ol>
-<li>用常数 1 取代运行时间中的所有加法常数。</li>
-<li>在修改后的运行次数函数中，只保留最高阶项。</li>
-<li>如果最高阶存在且不是 1，则去除与这个项相乘的常数。<br>得到的结果就是大 O 阶。</li>
-</ol>
-<h2 id="常见的时间复杂度"><a href="#常见的时间复杂度" class="headerlink" title="常见的时间复杂度"></a>常见的时间复杂度</h2><p>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n^2) &lt; O(n^3) &lt; O(2^n) &lt; O(n!) &lt; O(n^n)</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过这次实践，我发现影响包大小的主要因素是某些较大的第三方库及库里的图片，以及支持iPhone 4、4s 的 armv7。对于用不到的类、图片等资源文件要及时清理，使用被蓝湖等工具压缩过的图片等方式来改善安装包大小。</p>
 
     </div>
 
@@ -355,7 +332,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+              <a href="/tags/包大小/" rel="tag"># 包大小</a>
+            
+              <a href="/tags/优化/" rel="tag"># 优化</a>
             
           </div>
         
@@ -365,8 +344,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/03/05/CodingGuidelines/" rel="next" title="iOS 代码规范">
-                  <i class="fa fa-chevron-left"></i> iOS 代码规范
+                <a href="/2019/09/10/DataStructurePart4/" rel="next" title="《大话数据结构》四">
+                  <i class="fa fa-chevron-left"></i> 《大话数据结构》四
                 </a>
               
             </div>
@@ -374,10 +353,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/05/29/DataStructurePart2/" rel="prev" title="《大话数据结构》学习笔记二">
-                  《大话数据结构》学习笔记二 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -572,7 +547,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第1章-数据结构绪论"><span class="nav-number">1.</span> <span class="nav-text">第1章 数据结构绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑结构与物理结构"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑结构与物理结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种："><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1. 逻辑结构：是指数据对象中数据元素之间的相互关系。分为以下4种：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-物理结构：是指数据的逻辑结构在计算机中的存储形式。"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2. 物理结构：是指数据的逻辑结构在计算机中的存储形式。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">抽象数据类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第2章-算法"><span class="nav-number">2.</span> <span class="nav-text">第2章 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的特性"><span class="nav-number">2.1.</span> <span class="nav-text">算法的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法设计的要求"><span class="nav-number">2.2.</span> <span class="nav-text">算法设计的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法效率的度量方法"><span class="nav-number">2.3.</span> <span class="nav-text">算法效率的度量方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的渐近式增长"><span class="nav-number">2.4.</span> <span class="nav-text">函数的渐近式增长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法时间复杂度"><span class="nav-number">2.5.</span> <span class="nav-text">算法时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推导大-O-阶方法"><span class="nav-number">2.6.</span> <span class="nav-text">推导大 O 阶方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的时间复杂度"><span class="nav-number">2.7.</span> <span class="nav-text">常见的时间复杂度</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#App1"><span class="nav-number">1.</span> <span class="nav-text">App1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App2："><span class="nav-number">2.</span> <span class="nav-text">App2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小提示"><span class="nav-number">3.</span> <span class="nav-text">小提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
